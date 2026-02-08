@@ -1,0 +1,380 @@
+body {
+  background-color: #ffffff;
+  color: #333;
+  margin: 0;
+  padding: 100px;
+  font-family: "DotGothic16", sans-serif;
+  min-height: 100vh;
+  justify-content: center;
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */ /* Centers children along the main axis (vertical in this case) */
+  align-items: center; /* Centers children along the cross axis (horizontal in this case) */
+  min-height: 100vh; /* Ensures the body takes at least the full viewport height */
+  margin: 0;
+}
+
+p {
+  font-size: 16px;
+  max-width: 700px;
+  margin: 1rem auto 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+.how-to-browse {
+  font-size: 13px;
+  color: blue;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@media (max-width: 480px) {
+  .how-to-browse {
+    font-size: 12px;
+  } /* slightly larger on phones */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.ipod-container {
+  margin-top: 200px;
+  text-align: center;
+}
+.ipod {
+  width: 300px;
+  margin-top: 200px;
+  max-width: 300px;
+  height: auto;
+  cursor: grab;
+  display: block;
+  margin: 0 auto 2rem;
+  transition: filter 0.3s ease;
+}
+
+area {
+  cursor: grab;
+}
+area:hover {
+  outline: 2px dashed rgba(255, 182, 193, 0.7);
+  outline-offset: 2px;
+}
+.article-content {
+  max-width: 700px;
+  margin: 2rem auto;
+  text-align: left;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 10px;
+}
+.ipod-back {
+  width: 50px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.body-playlist {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+.ipod-screen {
+  width: 260px;
+  height: 320px;
+  border-radius: 4px;
+  background-color: #cfd7e4;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  color: #616491;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: bold;
+  border-bottom: 1px solid #9cb7c5;
+  padding-bottom: 4px;
+}
+
+.menu-text {
+  color: #616491;
+}
+
+.battery {
+  color: #0a1a2b;
+}
+
+.title {
+  font-size: 14px;
+  text-align: left;
+  margin: 10px 0 5px;
+  border-bottom: 1px solid #9cb7c5;
+  padding-bottom: 3px;
+  background-color: #616491;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 2px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+  font-size: 13px;
+}
+
+.menu li {
+  padding: 6px 8px;
+  border-bottom: 1px solid #b0c4cf;
+  text-align: left;
+}
+
+.menu li:hover {
+  background-color: #a8c6d6;
+  cursor: pointer;
+}
+
+.now-playing {
+  background-color: #616491;
+  text-align: center;
+  font-size: 13px;
+  padding: 6px;
+  margin-top: 6px;
+}
+
+.now-playing a {
+  color: white;
+  text-decoration: none;
+}
+
+.now-playing a:hover {
+  text-decoration: underline;
+}
+
+.playlists-source-page {
+  margin: 0;
+  padding: 0;
+  font-family: "DotGothic16", sans-serif;
+  font-weight: 600;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+}
+
+.playlist-page h2 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  color: black;
+  font-weight: 600;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 200px;
+  margin-top: 30px;
+}
+
+.links a img {
+  width: 50px;
+  height: auto;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.links a:hover img {
+  transform: scale(1.1);
+}
+
+.youtube-icon {
+  position: relative;
+  top: 3px;
+  margin-top: 5px;
+}
+
+.return-to-playlist {
+  font-size: 16px;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.body-articles {
+  display: flex;
+  background-color: #ffffff;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: "DotGothic16", sans-serif;
+  min-height: 100vh;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.title-article {
+  color: blue;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.paragraph-articles {
+  text-align: justify;
+}
+
+.paragraph-art {
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+.coverflow-container {
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 50px 0;
+  perspective: 1000px;
+}
+
+.albumcover {
+  display: flex;
+  gap: 30px; /* space between each album */
+  justify-content: center;
+  align-items: flex-start; /* align all albums to top */
+}
+
+.album {
+  display: flex;
+  flex-direction: column; /* stack image and title vertically */
+  align-items: center; /* center horizontally */
+}
+
+.album img {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.album img:hover {
+  transform: scale(1.05) translateY(-15px);
+}
+
+.title-image {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 15px;
+  color: blue;
+}
+
+.main-title {
+  color: black;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+  position: relative;
+  top: -10px;
+}
+
+.doors {
+  margin-bottom: 50px;
+}
+
+.article-columns {
+  column-count: 2;
+  column-gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 0px;
+}
+
+.ressources {
+  margin-top: 50px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* RETRO GREY PANEL */
+.retro-panel {
+  background: #d8d8d8;
+  border: 2px solid #b5b5b5;
+  height: fit-content;
+  padding-bottom: 20px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+  width: 250px;
+  max-width: 250px;
+  flex: 0 0 auto;
+}
+
+/* RETRO HEADER */
+.retro-header {
+  background: #c2c2c2;
+  border-bottom: 2px solid #b1b1b1;
+  padding: 6px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* RETRO LINKS */
+.retro-links {
+  list-style: none;
+  padding: 15px 10px;
+  margin: 0;
+  text-align: left;
+}
+.retro-links li {
+  margin-bottom: 10px;
+}
+.retro-links a {
+  color: blue;
+  text-decoration: underline;
+}
+.retro-links a:hover {
+  opacity: 0.7;
+}
+
+.panel-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

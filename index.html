@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>i discovered music</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ipod-container">
+      <img
+        src="pink-ipod.png"
+        usemap="#ipod-map"
+        alt="Pink iPod"
+        class="ipod"
+        width="300"
+        height="300"
+      />
+    </div>
+    <map name="ipod-map">
+      <area
+        alt="Playlists"
+        title="Playlists"
+        href="playlist.html"
+        target="_self"
+        shape="circle"
+        coords="105,220,35"
+      />
+
+      <area
+        alt="Articles"
+        title="Articles"
+        href="diary-overview.html"
+        target="_self"
+        shape="circle"
+        coords="200,220,35"
+      />
+
+      <area
+        alt="Where to get your music"
+        title="Where to get your music"
+        href="where-to-get-your-music.html"
+        target="_self"
+        shape="circle"
+        coords="150,250,35"
+      />
+    </map>
+
+    <p class="how-to-browse">click on the wheel to explore</p>
+
+    <p>
+      I discovered music on my mom’s pink iPod. Since then, music has saved me /
+      pissed me off / made me angry / made me feel bland / listened to barely
+      any music for two years / picked up again / started watching concerts /
+      started going to concerts / became obsessed / so obsessed I need to put it
+      somewhere.
+    </p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/imageMapResizer.min.js"></script>
+    <script>
+      imageMapResize();
+    </script>
+  </body>
+</html>
