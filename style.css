@@ -2,7 +2,6 @@ body {
   background-color: #ffffff;
   color: #333;
   margin: 0;
-  padding: 50px;
   font-family: "DotGothic16", sans-serif;
   min-height: 100vh;
   justify-content: center;
@@ -11,6 +10,10 @@ body {
   align-items: center; /* Centers children along the cross axis (horizontal in this case) */
   min-height: 100vh; /* Ensures the body takes at least the full viewport height */
   margin: 0;
+   padding-top: 20px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  padding-left: 30px;
 }
 
 p {
