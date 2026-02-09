@@ -16,6 +16,7 @@ body {
 p {
   font-size: 16px;
   max-width: 700px;
+  text-align: center;
   margin: 1rem auto 0;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
