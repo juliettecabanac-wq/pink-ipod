@@ -299,10 +299,13 @@ area:hover {
 }
 
 .title-image {
-  margin-top: 8px;
-  text-align: center;
+  margin: 8px auto 0 auto;   /* centers the block itself */
+  text-align: center;        /* centers the text */
   font-size: 15px;
   color: blue;
+  max-width: 300px;          /* controls when text wraps */
+  line-height: 1.4;          /* better readability */
+  word-wrap: break-word;
 }
 
 .main-title {
