@@ -303,7 +303,7 @@ area:hover {
   text-align: center;        /* centers the text */
   font-size: 15px;
   color: blue;
-  max-width: 300px;          /* controls when text wraps */
+  max-width: 150px;          /* controls when text wraps */
   line-height: 1.4;          /* better readability */
   word-wrap: break-word;
 }
