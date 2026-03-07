@@ -393,8 +393,8 @@ area:hover {
 
 .interview {
 
-  column-count: 2;        /* two wide columns */
-  column-gap: 80px;       /* space between columns */
+column-width: 520px;
+column-gap: 90px;
 
   text-align: justify;    /* block alignment like newspapers */
   text-justify: inter-word;
