@@ -385,3 +385,35 @@ area:hover {
   align-items: center;
   min-height: 100vh;
 }
+
+.interview {
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.pi {
+  font-style: italic;
+  margin-top: 28px;
+}
+
+.mf {
+  margin-left: 20px;
+}
+
+.note {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.quote {
+  font-style: italic;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.lyrics {
+  margin-left: 40px;
+  font-style: italic;
+}
