@@ -392,37 +392,40 @@ area:hover {
 }
 
 .interview {
-  max-width: 700px;
-  margin: auto;
-  line-height: 1.6;
+
+  column-count: 2;        /* two wide columns */
+  column-gap: 80px;       /* space between columns */
+
+  text-align: justify;    /* block alignment like newspapers */
+  text-justify: inter-word;
+
+  line-height: 1.65;
   font-size: 16px;
-  column-count: 2;        /* number of columns */
-  column-gap: 60px;       /* space between columns */
-  text-align: justify;    /* block text like newspapers */
+
+  padding-left: 40px;     /* page margin */
+  padding-right: 40px;
+}
+
+.interview p {
+  margin-bottom: 16px;
+  break-inside: avoid;
 }
 
 .pi {
   font-style: italic;
-  margin-top: 28px;
-  color: #eeb6dd;
+  margin-top: 20px;
 }
 
 .mf {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .note {
   font-style: italic;
-  opacity: 0.8;
-}
-
-.quote {
-  font-style: italic;
-  text-align: center;
-  margin: 30px 0;
+  opacity: 0.85;
 }
 
 .lyrics {
-  margin-left: 40px;
   font-style: italic;
+  margin-left: 20px;
 }
