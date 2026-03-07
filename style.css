@@ -38,6 +38,11 @@ p {
 @media (max-width: 480px) {
   .how-to-browse {
     font-size: 12px;
+  @media (max-width: 800px) {
+  .interview {
+    column-count: 1;
+  }
+}
   } /* slightly larger on phones */
 }
 
@@ -391,6 +396,9 @@ area:hover {
   margin: auto;
   line-height: 1.6;
   font-size: 16px;
+  column-count: 2;        /* number of columns */
+  column-gap: 60px;       /* space between columns */
+  text-align: justify;    /* block text like newspapers */
 }
 
 .pi {
