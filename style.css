@@ -26,7 +26,7 @@ p {
 .how-to-browse {
   font-size: 13px;
   color: blue;
-  margin-top: 30px;
+  margin-top: 40px;
   margin-bottom: 0.5rem;
   letter-spacing: 0.5px;
   text-align: center;
@@ -55,17 +55,24 @@ p {
   }
 }
 .ipod-container {
-  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: clamp(20px, 5vh, 60px); /* controls space from text above */
   text-align: center;
 }
+
 .ipod {
   width: 300px;
-  margin-top: 200px;
-  max-width: 300px;
+  max-width: 80vw; /* responsive on small screens */
   height: auto;
-  cursor: grab;
+
   display: block;
-  margin: 0 auto 2rem;
+  cursor: grab;
+
+  margin: 0; /* 🚨 no margin conflicts anymore */
+  margin-top: 80px;
   transition: filter 0.3s ease;
 }
 
@@ -306,22 +313,18 @@ area:hover {
   margin: 8px auto 0 auto; /* centers the block itself */
   text-align: center; /* centers the text */
   font-size: 15px;
-  color: blue;
+  color: black;
   max-width: 150px; /* controls when text wraps */
   line-height: 1.4; /* better readability */
   word-wrap: break-word;
 }
 
 .main-title {
-  color: black;
+  color: blue;
   text-align: center;
   animation: fadeIn 1.5s ease-in-out;
   position: relative;
-  top: -10px;
-}
-
-.doors {
-  margin-bottom: 50px;
+  padding-top: clamp(40px, 6vh, 80px);
 }
 
 .article-columns {
@@ -493,3 +496,17 @@ area:hover {
   text-align: center;
 }
 
+.intropagediary {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  width: min(900px, 100% - 200px); /* 👈 magic line */
+
+  margin: 0 auto;
+
+  padding-top: 20px;
+  padding-bottom: 60px;
+
+  text-align: center;
+}
