@@ -320,7 +320,7 @@ area:hover {
 }
 
 .main-title {
-  color: blue;
+  color: #0000FF;
   text-align: center;
   animation: fadeIn 1.5s ease-in-out;
   position: relative;
