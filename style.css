@@ -1,14 +1,4 @@
-/* =================================================================
-   i discovered music  /  Pink Ipod  -  stylesheet
-   -----------------------------------------------------------------
-   Drop in replacement. Every existing class name is preserved, so no
-   HTML file needs to change. Goals: uniform look across pages,
-   readable on any screen (mobile first), and smooth interactions.
-   ================================================================= */
 
-/* -----------------------------------------------------------------
-   1. Design tokens (internal only, no class names change)
-   ----------------------------------------------------------------- */
 :root {
   --bg: #ffffff;
   --ink: #333333;
