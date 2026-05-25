@@ -1,119 +1,568 @@
+/* =================================================================
+   i discovered music  /  Pink Ipod  -  stylesheet
+   -----------------------------------------------------------------
+   Drop in replacement. Every existing class name is preserved, so no
+   HTML file needs to change. Goals: uniform look across pages,
+   readable on any screen (mobile first), and smooth interactions.
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   1. Design tokens (internal only, no class names change)
+   ----------------------------------------------------------------- */
+:root {
+  --bg: #ffffff;
+  --ink: #333333;
+  --ink-soft: rgba(0, 0, 0, 0.6);
+
+  --blue: #0000ff; /* the original blue used for links and titles */
+  --pink: #d16089; /* commentary pink, deepened so it stays readable */
+  --screen: #616491; /* iPod screen purple, kept for quotes */
+
+  --panel: #d8d8d8; /* retro grey panel */
+  --panel-header: #c2c2c2;
+  --panel-border: #b5b5b5;
+
+  --font: "DotGothic16", "Courier New", monospace;
+
+  --reading: 900px; /* comfortable reading width */
+  --gutter: 1rem; /* horizontal breathing room on phones */
+  --radius: 10px;
+  --tap: 44px; /* minimum comfortable touch target */
+}
+
+/* -----------------------------------------------------------------
+     2. Reset and base
+     ----------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%; /* stop iOS auto inflating text */
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: #ffffff;
-  color: #333;
   margin: 0;
-  font-family: "DotGothic16", sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.65;
   min-height: 100vh;
-  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  /* the home page (no body class) stays centered */
   display: flex;
-  flex-direction: column; /* Stacks children vertically */ /* Centers children along the main axis (vertical in this case) */
-  align-items: center; /* Centers children along the cross axis (horizontal in this case) */
-  min-height: 100vh; /* Ensures the body takes at least the full viewport height */
-  margin: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--gutter);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 p {
-  font-size: 16px;
-  margin: 1rem auto 0;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.6;
-}
-.how-to-browse {
-  font-size: 13px;
-  color: blue;
-  margin-top: 40px;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.5px;
-  text-align: center;
-  animation: fadeIn 1.5s ease-in-out;
+  font-size: 1rem;
+  margin: 0.5rem auto;
+  line-height: 1.65;
 }
 
-@media (max-width: 480px) {
-  .how-to-browse {
-    font-size: 12px;
-    @media (max-width: 480px) {
-      .how-to-browse {
-        font-size: 12px;
-      }
-    }
-  } /* slightly larger on phones */
+a {
+  color: var(--blue);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Visible keyboard focus everywhere, for accessibility */
+a:focus-visible,
+area:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
+
+/* -----------------------------------------------------------------
+     3. Home page (index.html: .ipod-container, .ipod, area,
+        .how-to-browse, .intropage)
+     ----------------------------------------------------------------- */
 .ipod-container {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin-top: clamp(20px, 5vh, 60px); /* controls space from text above */
+  margin-top: clamp(16px, 4vh, 48px);
   text-align: center;
 }
 
 .ipod {
   width: 300px;
-  max-width: 80vw; /* responsive on small screens */
+  max-width: min(80vw, 320px);
   height: auto;
-
   display: block;
-  cursor: grab;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
 
-  margin: 0; /* 🚨 no margin conflicts anymore */
-  margin-top: 80px;
-  transition: filter 0.3s ease;
+.ipod:hover {
+  filter: brightness(1.02);
 }
 
 area {
-  cursor: grab;
+  cursor: pointer;
 }
+
 area:hover {
   outline: 2px dashed rgba(255, 182, 193, 0.7);
   outline-offset: 2px;
 }
+
+.how-to-browse {
+  font-size: 0.85rem;
+  color: var(--blue);
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 2rem auto 0.5rem;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* intro paragraphs: the old "100% - 200px" width left only a sliver of
+     text on phones. Now it scales from edge to edge with a sane cap. */
+.intropage,
+.intropagediary {
+  display: block;
+  width: min(var(--reading), 100%);
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 1.25rem;
+}
+
+.intropage {
+  padding-bottom: 4rem;
+}
+
+.intropagediary {
+  padding-bottom: 2.5rem;
+}
+
+/* -----------------------------------------------------------------
+     4. Shared back to menu button (.ipod-back)
+     ----------------------------------------------------------------- */
+.ipod-back {
+  width: 50px;
+  height: auto;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.ipod-back:hover {
+  transform: scale(1.08);
+}
+
+/* -----------------------------------------------------------------
+     5. Article body shells (.paragraph-articles, .body-articles)
+     ----------------------------------------------------------------- */
+.paragraph-articles {
+  justify-content: flex-start;
+  align-items: center;
+  text-align: justify;
+  padding: 2.5rem var(--gutter) 5rem;
+}
+
+.body-articles {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 3rem var(--gutter) 5rem;
+}
+
+/* -----------------------------------------------------------------
+     6. Titles (.title-article, .main-title) unified
+     ----------------------------------------------------------------- */
+.title-article,
+.main-title {
+  color: var(--blue);
+  text-align: center;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  line-height: 1.3;
+  margin: 1.5rem auto 2.5rem;
+  padding-top: clamp(20px, 4vh, 60px);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* -----------------------------------------------------------------
+     7. Long form text
+     .article-columns and .intro-columns: two columns on wide screens,
+     one column on phones. .interview: single justified column.
+     Giving each a definite width keeps the multi column layout stable
+     inside the centered flex body.
+     ----------------------------------------------------------------- */
+.article-columns,
+.intro-columns,
+.interview {
+  width: min(var(--reading), 100%);
+  margin: 0 auto;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.article-columns,
+.intro-columns {
+  column-count: 1;
+  column-gap: 40px;
+}
+
+.intro-columns {
+  margin-bottom: 2.5rem;
+}
+
+.interview {
+  line-height: 1.7;
+  margin-top: 2.5rem;
+}
+
+.article-columns p,
+.intro-columns p,
+.interview p {
+  margin-bottom: 1rem;
+}
+
+/* Multi paragraph intro reads best when each paragraph stays whole.
+     The long single paragraph articles must instead flow across columns,
+     so they are intentionally not given break-inside: avoid. */
+.intro-columns p {
+  break-inside: avoid;
+}
+
+.paragraph-art {
+  margin: 0 0 1.5rem;
+}
+
+/* Interview question / answer */
+.pi {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1.75rem;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.mf {
+  opacity: 0.95;
+}
+
+.note {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.commentary {
+  font-style: italic;
+  color: var(--pink);
+}
+
+.lyrics {
+  font-style: italic;
+  margin-left: 20px;
+}
+
+/* pull quote (used in the articles, previously unstyled) */
+.quote {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--screen);
+  border-left: 4px solid var(--blue);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(var(--reading), 100%);
+  margin: 3rem auto 1.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: var(--ink-soft);
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* two columns only once there is room for them */
+@media (min-width: 768px) {
+  .article-columns,
+  .intro-columns {
+    column-count: 2;
+  }
+}
+
+/* -----------------------------------------------------------------
+     8. Coverflow gallery (.coverflow, .albumcover, .album, .title-image,
+        .ressources, .image-article)
+        The markup uses .coverflow, so it is styled here (the old CSS only
+        styled .coverflow-container, which no page uses). Scrolls smoothly
+        and snaps on small screens, centers when it fits on wide screens.
+     ----------------------------------------------------------------- */
+.coverflow,
+.coverflow-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding: 1.5rem 0 2rem;
+}
+
+.albumcover {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  width: max-content;
+  max-width: max-content;
+  margin: 0 auto; /* centered when it fits, scrolls when it does not */
+  padding: 0 var(--gutter);
+}
+
+.album {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  text-decoration: none;
+}
+
+.album a {
+  text-decoration: none;
+}
+
+/* uniform thumbnail size for every gallery image, regardless of class.
+     The grey background means a missing or empty image file (e.g. the
+     empty microphone2.jpg) renders as a clean rounded tile with its alt
+     text, instead of a broken icon. */
+.album img,
+.ressources,
+.image-article {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--panel);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.album img:hover,
+.ressources:hover,
+.image-article:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+.title-image {
+  margin: 0.5rem auto 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #000;
+  max-width: 150px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+  .album img,
+  .ressources,
+  .image-article {
+    width: 180px;
+    height: 180px;
+  }
+  .title-image {
+    max-width: 180px;
+  }
+}
+
+/* -----------------------------------------------------------------
+     9. Playlist source pages (.playlists-source-page, .playlist-page,
+        .links, .youtube-icon, .return-to-playlist)
+        Fixed 100vh height replaced with min-height so content never
+        gets clipped on short or rotated screens.
+     ----------------------------------------------------------------- */
+.playlists-source-page {
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 2rem var(--gutter) 5rem;
+}
+
+.playlist-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playlist-page h2 {
+  margin: 0 0 1.25rem;
+  font-size: 1.15rem;
+  color: #000;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 1.75rem auto;
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap);
+  min-height: var(--tap);
+}
+
+.links a img {
+  width: 50px;
+  height: auto;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.links a:hover img {
+  transform: scale(1.1);
+}
+
+.youtube-icon {
+  position: relative;
+  top: 3px;
+}
+
+.return-to-playlist {
+  font-size: 1rem;
+  color: var(--blue);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+}
+
+/* -----------------------------------------------------------------
+     10. Retro grey panel (.panel-wrapper, .retro-panel, .retro-header,
+         .retro-links)  -  used by playlist.html
+     ----------------------------------------------------------------- */
+.panel-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--gutter);
+}
+
+.retro-panel {
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  border-radius: 6px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+  width: min(320px, 100%);
+  height: fit-content;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.retro-header {
+  background: var(--panel-header);
+  border-bottom: 2px solid var(--panel-border);
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+.retro-links {
+  list-style: none;
+  padding: 1rem 0.75rem;
+  margin: 0;
+  text-align: left;
+}
+
+.retro-links li {
+  margin-bottom: 0.5rem;
+}
+
+.retro-links a {
+  color: var(--blue);
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  line-height: 1.4;
+}
+
+.retro-links a:hover {
+  opacity: 0.7;
+}
+
+/* -----------------------------------------------------------------
+     11. Legacy helpers kept for compatibility (not used by the current
+         pages, retained so nothing referencing them elsewhere breaks).
+         Fixed heights softened to min-height.
+     ----------------------------------------------------------------- */
 .article-content {
   max-width: 700px;
   margin: 2rem auto;
   text-align: left;
   padding: 1rem;
-  background-color: white;
-  border-radius: 10px;
-}
-.ipod-back {
-  width: 50px;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  cursor: pointer;
-  z-index: 1000;
-  transition: transform 0.3s ease;
+  background-color: #fff;
+  border-radius: var(--radius);
 }
 
 .body-playlist {
-  background-color: white;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
   font-weight: bold;
 }
 
 .ipod-screen {
   width: 260px;
+  max-width: 90vw;
   height: 320px;
   border-radius: 4px;
   background-color: #cfd7e4;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  color: #616491;
+  color: var(--screen);
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -129,7 +578,7 @@ area:hover {
 }
 
 .menu-text {
-  color: #616491;
+  color: var(--screen);
 }
 
 .battery {
@@ -140,9 +589,7 @@ area:hover {
   font-size: 14px;
   text-align: left;
   margin: 10px 0 5px;
-  border-bottom: 1px solid #9cb7c5;
-  padding-bottom: 3px;
-  background-color: #616491;
+  background-color: var(--screen);
   color: #fff;
   padding: 3px 6px;
   border-radius: 2px;
@@ -169,7 +616,7 @@ area:hover {
 }
 
 .now-playing {
-  background-color: #616491;
+  background-color: var(--screen);
   text-align: center;
   font-size: 13px;
   padding: 6px;
@@ -177,7 +624,7 @@ area:hover {
 }
 
 .now-playing a {
-  color: white;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -185,324 +632,29 @@ area:hover {
   text-decoration: underline;
 }
 
-.playlists-source-page {
-  margin: 0;
-  padding: 0;
-  font-family: "DotGothic16", sans-serif;
-  font-weight: 600;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  text-align: center;
-}
-
-.playlist-page h2 {
-  margin: 0 0 20px 0;
-  font-size: 18px;
-  color: black;
-  font-weight: 600;
-}
-
-.links {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 200px;
-  margin-top: 30px;
-}
-
-.links a img {
-  width: 50px;
-  height: auto;
-  display: block;
-  transition: transform 0.2s;
-}
-
-.links a:hover img {
-  transform: scale(1.1);
-}
-
-.youtube-icon {
-  position: relative;
-  top: 3px;
-  margin-top: 5px;
-}
-
-.return-to-playlist {
-  font-size: 16px;
-  color: blue;
-  cursor: pointer;
-  text-decoration: underline;
-  margin-top: 10px;
-  display: inline-block;
-}
-
-.body-articles {
-  display: flex;
-  background-color: #ffffff;
-  color: #333;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  font-family: "DotGothic16", sans-serif;
-  min-height: 100vh;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 50px;
-}
-
-.title-article {
-  color: blue;
-  text-align: center;
-  margin-top: 60px;
-  margin-bottom: 50px; /* ← add this */
-}
-
-.paragraph-articles {
-  text-align: justify;
-}
-
-.paragraph-art {
-  margin-top: 0px;
-  margin-bottom: 25px;
-}
-
-.coverflow-container {
-  width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  display: flex;
-  justify-content: center;
-  padding: 40px 0 50px 0;
-  perspective: 1000px;
-}
-
-.albumcover {
-  display: flex;
-  gap: 30px; /* space between each album */
-  justify-content: center;
-  align-items: flex-start; /* align all albums to top */
-}
-
-.album {
-  display: flex;
-  flex-direction: column; /* stack image and title vertically */
-  align-items: center; /* center horizontally */
-}
-
-.album img {
-  width: 120px;
-  height: 120px;
-  border-radius: 10px;
-  transition: transform 0.3s;
-}
-
-.album img:hover {
-  transform: scale(1.05) translateY(-15px);
-}
-
-.title-image {
-  margin: 8px auto 0 auto; /* centers the block itself */
-  text-align: center; /* centers the text */
-  font-size: 15px;
-  color: black;
-  max-width: 150px; /* controls when text wraps */
-  line-height: 1.4; /* better readability */
-  word-wrap: break-word;
-}
-
-.main-title {
-  color: #0000FF;
-  text-align: center;
-  animation: fadeIn 1.5s ease-in-out;
-  position: relative;
-  padding-top: clamp(40px, 6vh, 80px);
-}
-
-.article-columns {
-  column-count: 2;
-  column-gap: 40px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  margin-top: 0px;
-}
-
-.ressources {
-  margin-top: 50px;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-}
-
-/* RETRO GREY PANEL */
-.retro-panel {
-  background: #d8d8d8;
-  border: 2px solid #b5b5b5;
-  height: fit-content;
-  padding-bottom: 20px;
-  border-radius: 6px;
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
-  width: 250px;
-  max-width: 250px;
-  flex: 0 0 auto;
-}
-
-/* RETRO HEADER */
-.retro-header {
-  background: #c2c2c2;
-  border-bottom: 2px solid #b1b1b1;
-  padding: 6px 0;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-/* RETRO LINKS */
-.retro-links {
-  list-style: none;
-  padding: 15px 10px;
-  margin: 0;
-  text-align: left;
-}
-.retro-links li {
-  margin-bottom: 10px;
-}
-.retro-links a {
-  color: blue;
-  text-decoration: underline;
-}
-.retro-links a:hover {
-  opacity: 0.7;
-}
-
-.panel-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.interview {
-  text-align: justify; /* block alignment like newspapers */
-  text-justify: inter-word;
-
-  line-height: 1.65;
-  font-size: 16px;
-
-  padding-left: 40px; /* page margin */
-  padding-right: 40px;
-  margin: 80px auto 0;
-}
-
-.interview p {
-  margin-bottom: 16px;
-  break-inside: avoid;
-}
-
-.pi {
-  font-size: 20px; /* bigger */
-  font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.mf {
-  opacity: 0.95;
-}
-
-.note {
-  font-style: italic;
-  opacity: 0.85;
-}
-
-.lyrics {
-  font-style: italic;
-  margin-left: 20px;
-}
-
-.intro-columns {
-  column-count: 2;
-  column-gap: 50px;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: justify;
-  margin-bottom: 80px;
-}
-
-@media (max-width: 800px) {
-  .intro-columns {
-    column-count: 1;
+/* -----------------------------------------------------------------
+     12. Motion (with reduced motion preference respected)
+     ----------------------------------------------------------------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.intro-columns,
-.interview {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.section-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  margin: 60px auto 40px;
-  margin-bottom: 20px;
-  max-width: 900px;
-
-  font-size: 14px;
-  letter-spacing: 2px;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.section-divider::before,
-.section-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.commentary {
-  font-style: italic;
-  color: pink;
-}
-
-.intropage {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  width: min(900px, 100% - 200px); /* 👈 magic line */
-
-  margin: 0 auto;
-
-  padding-top: 20px;
-  padding-bottom: 100px;
-
-  text-align: center;
-}
-
-.intropagediary {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  width: min(900px, 100% - 200px); /* 👈 magic line */
-
-  margin: 0 auto;
-
-  padding-top: 20px;
-  padding-bottom: 60px;
-
-  text-align: center;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
