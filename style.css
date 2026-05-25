@@ -624,7 +624,7 @@ area:hover {
 
 .inline-photo {
   float: left;
-  width: 180px;
+  max-width:100%
   height: auto;
   margin: 0 16px 8px 0;
   border-radius: 10px;
