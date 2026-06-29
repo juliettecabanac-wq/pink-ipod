@@ -636,6 +636,14 @@ area:hover {
   text-decoration: underline;
   margin: 12px 0;
 }
+
+.playlist-photo {
+  display: block;
+  max-width: 280px;
+  width: 60%;
+  margin: 16px auto;
+}
+
 /* -----------------------------------------------------------------
      12. Motion (with reduced motion preference respected)
      ----------------------------------------------------------------- */
