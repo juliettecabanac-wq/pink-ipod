@@ -1,4 +1,14 @@
+/* =================================================================
+   i discovered music  /  Pink Ipod  -  stylesheet
+   -----------------------------------------------------------------
+   Drop in replacement. Every existing class name is preserved, so no
+   HTML file needs to change. Goals: uniform look across pages,
+   readable on any screen (mobile first), and smooth interactions.
+   ================================================================= */
 
+/* -----------------------------------------------------------------
+   1. Design tokens (internal only, no class names change)
+   ----------------------------------------------------------------- */
 :root {
   --bg: #ffffff;
   --ink: #333333;
@@ -21,8 +31,8 @@
 }
 
 /* -----------------------------------------------------------------
-     2. Reset and base
-     ----------------------------------------------------------------- */
+       2. Reset and base
+       ----------------------------------------------------------------- */
 *,
 *::before,
 *::after {
@@ -76,9 +86,9 @@ area:focus-visible {
 }
 
 /* -----------------------------------------------------------------
-     3. Home page (index.html: .ipod-container, .ipod, area,
-        .how-to-browse, .intropage)
-     ----------------------------------------------------------------- */
+       3. Home page (index.html: .ipod-container, .ipod, area,
+          .how-to-browse, .intropage)
+       ----------------------------------------------------------------- */
 .ipod-container {
   display: flex;
   justify-content: center;
@@ -120,7 +130,7 @@ area:hover {
 }
 
 /* intro paragraphs: the old "100% - 200px" width left only a sliver of
-     text on phones. Now it scales from edge to edge with a sane cap. */
+       text on phones. Now it scales from edge to edge with a sane cap. */
 .intropage,
 .intropagediary {
   display: block;
@@ -139,8 +149,8 @@ area:hover {
 }
 
 /* -----------------------------------------------------------------
-     4. Shared back to menu button (.ipod-back)
-     ----------------------------------------------------------------- */
+       4. Shared back to menu button (.ipod-back)
+       ----------------------------------------------------------------- */
 .ipod-back {
   width: 50px;
   height: auto;
@@ -157,8 +167,8 @@ area:hover {
 }
 
 /* -----------------------------------------------------------------
-     5. Article body shells (.paragraph-articles, .body-articles)
-     ----------------------------------------------------------------- */
+       5. Article body shells (.paragraph-articles, .body-articles)
+       ----------------------------------------------------------------- */
 .paragraph-articles {
   justify-content: flex-start;
   align-items: center;
@@ -176,8 +186,8 @@ area:hover {
 }
 
 /* -----------------------------------------------------------------
-     6. Titles (.title-article, .main-title) unified
-     ----------------------------------------------------------------- */
+       6. Titles (.title-article, .main-title) unified
+       ----------------------------------------------------------------- */
 .title-article,
 .main-title {
   color: var(--blue);
@@ -190,12 +200,12 @@ area:hover {
 }
 
 /* -----------------------------------------------------------------
-     7. Long form text
-     .article-columns and .intro-columns: two columns on wide screens,
-     one column on phones. .interview: single justified column.
-     Giving each a definite width keeps the multi column layout stable
-     inside the centered flex body.
-     ----------------------------------------------------------------- */
+       7. Long form text
+       .article-columns and .intro-columns: two columns on wide screens,
+       one column on phones. .interview: single justified column.
+       Giving each a definite width keeps the multi column layout stable
+       inside the centered flex body.
+       ----------------------------------------------------------------- */
 .article-columns,
 .intro-columns,
 .interview {
@@ -228,8 +238,8 @@ area:hover {
 }
 
 /* Multi paragraph intro reads best when each paragraph stays whole.
-     The long single paragraph articles must instead flow across columns,
-     so they are intentionally not given break-inside: avoid. */
+       The long single paragraph articles must instead flow across columns,
+       so they are intentionally not given break-inside: avoid. */
 .intro-columns p {
   break-inside: avoid;
 }
@@ -306,13 +316,25 @@ area:hover {
 }
 
 /* -----------------------------------------------------------------
-     8. Coverflow gallery (.coverflow, .albumcover, .album, .title-image,
-        .ressources, .image-article)
-        The markup uses .coverflow, so it is styled here (the old CSS only
-        styled .coverflow-container, which no page uses). Scrolls smoothly
-        and snaps on small screens, centers when it fits on wide screens.
-     ----------------------------------------------------------------- */
-.coverflow,
+       8. Coverflow gallery (.coverflow, .albumcover, .album, .title-image,
+          .ressources, .image-article)
+          Grid layout: 4 covers per row on desktop, 2 on tablet, 1 on phone.
+          .albumcover and .coverflow-container kept as legacy flex / scroll
+          layouts in case any other page still uses them.
+       ----------------------------------------------------------------- */
+.coverflow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 24px;
+  width: min(900px, 100%);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem var(--gutter) 2rem;
+  justify-items: center;
+  align-items: start;
+}
+
+/* Legacy horizontal scrolling container kept for any page still using it */
 .coverflow-container {
   width: 100%;
   max-width: 100%;
@@ -322,13 +344,14 @@ area:hover {
   padding: 1.5rem 0 2rem;
 }
 
+/* Legacy flex row wrapper kept for any page still using it */
 .albumcover {
   display: flex;
   gap: 24px;
   align-items: flex-start;
   width: max-content;
   max-width: max-content;
-  margin: 0 auto; /* centered when it fits, scrolls when it does not */
+  margin: 0 auto;
   padding: 0 var(--gutter);
 }
 
@@ -336,8 +359,6 @@ area:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 0 0 auto;
-  scroll-snap-align: center;
   text-decoration: none;
 }
 
@@ -346,9 +367,9 @@ area:hover {
 }
 
 /* uniform thumbnail size for every gallery image, regardless of class.
-     The grey background means a missing or empty image file (e.g. the
-     empty microphone2.jpg) renders as a clean rounded tile with its alt
-     text, instead of a broken icon. */
+       The grey background means a missing or empty image file (e.g. the
+       empty microphone2.jpg) renders as a clean rounded tile with its alt
+       text, instead of a broken icon. */
 .album img,
 .ressources,
 .image-article {
@@ -358,7 +379,6 @@ area:hover {
   border-radius: var(--radius);
   background: var(--panel);
   transition: transform 0.3s ease;
-  flex-shrink: 0;
   margin: 0;
 }
 
@@ -390,12 +410,25 @@ area:hover {
   }
 }
 
+/* Responsive: 4 cols on desktop, 2 on tablet, 1 on phone */
+@media (max-width: 900px) {
+  .coverflow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .coverflow {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* -----------------------------------------------------------------
-     9. Playlist source pages (.playlists-source-page, .playlist-page,
-        .links, .youtube-icon, .return-to-playlist)
-        Fixed 100vh height replaced with min-height so content never
-        gets clipped on short or rotated screens.
-     ----------------------------------------------------------------- */
+       9. Playlist source pages (.playlists-source-page, .playlist-page,
+          .links, .youtube-icon, .return-to-playlist)
+          Fixed 100vh height replaced with min-height so content never
+          gets clipped on short or rotated screens.
+       ----------------------------------------------------------------- */
 .playlists-source-page {
   font-weight: 600;
   display: flex;
@@ -467,9 +500,9 @@ area:hover {
 }
 
 /* -----------------------------------------------------------------
-     10. Retro grey panel (.panel-wrapper, .retro-panel, .retro-header,
-         .retro-links)  -  used by playlist.html
-     ----------------------------------------------------------------- */
+       10. Retro grey panel (.panel-wrapper, .retro-panel, .retro-header,
+           .retro-links)  -  used by playlist.html
+       ----------------------------------------------------------------- */
 .panel-wrapper {
   display: flex;
   justify-content: center;
@@ -523,10 +556,10 @@ area:hover {
 }
 
 /* -----------------------------------------------------------------
-     11. Legacy helpers kept for compatibility (not used by the current
-         pages, retained so nothing referencing them elsewhere breaks).
-         Fixed heights softened to min-height.
-     ----------------------------------------------------------------- */
+       11. Legacy helpers kept for compatibility (not used by the current
+           pages, retained so nothing referencing them elsewhere breaks).
+           Fixed heights softened to min-height.
+       ----------------------------------------------------------------- */
 .article-content {
   max-width: 700px;
   margin: 2rem auto;
@@ -622,31 +655,9 @@ area:hover {
   text-decoration: underline;
 }
 
-.inline-photo {
-  float: left;
-  max-width:100%
-  height: auto;
-  margin: 0 16px 8px 0;
-  border-radius: 10px;
-}
-
-.listen-anywhere {
-  display: inline-block;
-  font-family: "DotGothic16", sans-serif;
-  text-decoration: underline;
-  margin: 12px 0;
-}
-
-.playlist-photo {
-  display: block;
-  max-width: 280px;
-  width: 60%;
-  margin: 16px auto;
-}
-
 /* -----------------------------------------------------------------
-     12. Motion (with reduced motion preference respected)
-     ----------------------------------------------------------------- */
+       12. Motion (with reduced motion preference respected)
+       ----------------------------------------------------------------- */
 @keyframes fadeIn {
   from {
     opacity: 0;
