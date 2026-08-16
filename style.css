@@ -681,3 +681,146 @@ area:hover {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* -----------------------------------------------------------------
+       13. Desktop workspace + draggable retro windows
+           Used by playlists.html. Aesthetic goal: Windows 9x style
+           beveled panel with a blue gradient title bar and a lightly
+           cream tinted body evoking an early iPod menu screen.
+           Drag behavior lives in the inline script on playlists.html.
+       ----------------------------------------------------------------- */
+.desktop-workspace {
+  position: relative;
+  width: min(1100px, 100%);
+  min-height: min(80vh, 700px);
+  margin: 0 auto;
+  padding: 1.5rem var(--gutter) 5rem;
+  overflow: hidden; /* keeps dragged windows visually contained */
+}
+
+.win {
+  position: absolute;
+  width: 300px;
+  max-width: calc(100% - 20px);
+  background: var(--panel);
+  /* Windows 9x beveled edge: bright on top and left, dark on bottom and right */
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #6a6a6a;
+  border-bottom: 2px solid #6a6a6a;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+  user-select: none;
+}
+
+.win-titlebar {
+  background: linear-gradient(to bottom, #1c4e9c 0%, #06297f 100%);
+  color: #ffffff;
+  padding: 3px 4px 3px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  font-size: 0.95rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.win-title {
+  padding-right: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.win-controls {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.win-btn {
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  background: var(--panel);
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #404040;
+  border-bottom: 1px solid #404040;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  line-height: 1;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win-btn:active {
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.win-close:hover {
+  background: #f5c0c0;
+}
+
+.win-body {
+  padding: 10px 12px 12px;
+  background: #f7f6ee; /* subtle cream tint, ipod menu adjacent */
+  border-top: 1px solid #6a6a6a;
+}
+
+.win-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.win-list li {
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.25);
+}
+
+.win-list li:last-child {
+  border-bottom: none;
+}
+
+.win-list a {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  color: var(--blue);
+  text-decoration: none;
+  line-height: 1.4;
+  min-height: var(--tap);
+  font-size: 0.95rem;
+}
+
+.win-list a:hover,
+.win-list a:focus-visible {
+  background: rgba(0, 0, 128, 0.12);
+  text-decoration: underline;
+}
+
+/* Mobile: disable drag, stack windows vertically for readability */
+@media (max-width: 700px) {
+  .desktop-workspace {
+    min-height: auto;
+    padding: 1.5rem var(--gutter) 6rem;
+    overflow: visible;
+  }
+  .win {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto 1.5rem;
+  }
+  .win-titlebar {
+    cursor: default;
+  }
+}
