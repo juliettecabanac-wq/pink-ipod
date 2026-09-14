@@ -283,7 +283,8 @@ area:hover {
   color: var(--screen);
   border-left: 4px solid var(--blue);
   padding-left: 1rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
+  width: min(var(--reading), 100%);
   text-align: left;
 }
 
