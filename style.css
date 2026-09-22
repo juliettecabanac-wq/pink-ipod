@@ -825,3 +825,15 @@ area:hover {
     cursor: default;
   }
 }
+
+/* Publication date under article headlines */
+.article-date {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555;
+  letter-spacing: 0.5px;
+  margin: -1.5rem auto 2rem;
+}
+
+/* Wordmark logos (Bandcamp, Qobuz) need more width to stay legible */
+.links a img.wordmark { width: 90px; }
