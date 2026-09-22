@@ -837,3 +837,22 @@ area:hover {
 
 /* Wordmark logos (Bandcamp, Qobuz) need more width to stay legible */
 .links a img.wordmark { width: 90px; }
+
+/* Small artist photo at the end of each article, above the listening links */
+.artist-photo {
+  margin: 2.5rem auto 0.5rem;
+  text-align: center;
+}
+.artist-photo img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+  margin: 0 auto;
+}
+.artist-photo figcaption {
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
