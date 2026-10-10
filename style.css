@@ -878,7 +878,7 @@ area:hover {
 /* Home: the iPod is now cropped to the device, so it can be shown big */
 .ipod-device {
   position: relative;
-  width: clamp(220px, 70vw, 300px);
+  width: clamp(180px, 52vw, 215px); /* iPod size on the homepage: change 215px to resize */
   margin: 0 auto;
   container-type: inline-size;
 }
@@ -993,15 +993,23 @@ area:hover {
   height: 11.22%;
 }
 
-.ipod-hotspot:hover {
-  outline: 2px dashed rgba(255, 182, 193, 0.9);
-  outline-offset: -2px;
+/* the clickable zone stays large for fingers; the circle shown on hover is smaller */
+.ipod-hotspot::after {
+  content: "";
+  position: absolute;
+  inset: 24%; /* raise to shrink the circle, lower to enlarge it */
+  border-radius: 50%;
+  border: 1.5px dashed transparent;
 }
 
-.wheel-menu { left: 40.38%; top: 47.46%; }
-.wheel-prev { left: 12.69%; top: 62.89%; }
+.ipod-hotspot:hover::after {
+  border-color: var(--blue); /* same blue as the site's text links */
+}
+
+.wheel-menu { left: 40.38%; top: 45.95%; }
+.wheel-prev { left: 13.46%; top: 62.89%; }
 .wheel-next { left: 68.08%; top: 62.89%; }
-.wheel-play { left: 40.38%; top: 78.32%; }
+.wheel-play { left: 40.38%; top: 80.15%; }
 .wheel-select { left: 38.46%; top: 61.81%; width: 23.85%; height: 13.38%; }
 
 /* The back to menu iPod is now a tall picture, so it gets narrower */
@@ -1065,4 +1073,15 @@ h2.retro-header {
 
 .source-list .retro-links {
   padding-top: 0.5rem;
+}
+
+/* Content I have been enjoying: the two tiles sit centred under the title */
+.coverflow.coverflow-center {
+  display: flex;
+  justify-content: center;
+}
+
+/* the two list pages: the grey panel is the page, like on Playlists */
+.retro-panel.source-list.source-page {
+  margin-top: clamp(2rem, 12vh, 7rem);
 }
