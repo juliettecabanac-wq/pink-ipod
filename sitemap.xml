@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.pink-ipod.com/</loc></url>
-  <url><loc>https://www.pink-ipod.com/diary-overview.html</loc></url>
+  <url><loc>https://www.pink-ipod.com/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://www.pink-ipod.com/diary-overview.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://www.pink-ipod.com/who-is-pink-ipod.html</loc><lastmod>2026-10-10</lastmod></url>
   <url><loc>https://www.pink-ipod.com/soldat-rose-white-wings.html</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.pink-ipod.com/pomegranates.html</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://www.pink-ipod.com/maya-donovan.html</loc><lastmod>2026-09-16</lastmod></url>
@@ -13,7 +14,8 @@
   <url><loc>https://www.pink-ipod.com/marcusframe_found.html</loc></url>
   <url><loc>https://www.pink-ipod.com/thearmy-thenavy.html</loc></url>
   <url><loc>https://www.pink-ipod.com/marcus-frame.html</loc></url>
-  <url><loc>https://www.pink-ipod.com/playlist.html</loc></url>
-  <url><loc>https://www.pink-ipod.com/where-to-get-your-music.html</loc></url>
-  <url><loc>https://www.pink-ipod.com/podcasts.html</loc></url>
+  <url><loc>https://www.pink-ipod.com/playlist.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://www.pink-ipod.com/goodmorningsunshine.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://www.pink-ipod.com/enterrement.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://www.pink-ipod.com/where-to-get-your-music.html</loc><lastmod>2026-10-10</lastmod></url>
 </urlset>

@@ -856,3 +856,213 @@ area:hover {
   color: #555;
   margin-top: 0.5rem;
 }
+
+/* -----------------------------------------------------------------
+       11. October 2026 additions: iPod menu screen, hidden labels,
+           heading resets, navigation rows, 404 page
+       ----------------------------------------------------------------- */
+
+/* Text kept for screen readers and search engines, not shown on screen */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Home: the iPod is now cropped to the device, so it can be shown big */
+.ipod-device {
+  position: relative;
+  width: clamp(220px, 70vw, 300px);
+  margin: 0 auto;
+  container-type: inline-size;
+}
+
+.ipod-device .ipod {
+  width: 100%;
+  max-width: 100%;
+  cursor: default;
+}
+
+/* The menu drawn over the iPod screen: real links, crawlable and accessible.
+   Positions are percentages of the picture, so it scales with it. */
+.ipod-screen-menu {
+  position: absolute;
+  left: 18.46%;
+  top: 8.2%;
+  width: 64.04%;
+  height: 27.08%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(#c5d7e8 0%, #c5d7e8 72%, #b5c7d9 100%);
+  border-radius: 2px;
+  overflow: hidden;
+  font-size: 12px;
+  font-size: 4.4cqw;
+  line-height: 1;
+  color: #23255c;
+}
+
+.ipod-screen-title {
+  position: relative;
+  flex: 0 0 14.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-size: inherit;
+  line-height: 1;
+  border-bottom: 1px solid #23255c;
+}
+
+.ipod-battery {
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  width: 9%;
+  height: 42%;
+  transform: translateY(-50%);
+  border: 1px solid #23255c;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #474783 82%, transparent 82%);
+}
+
+.ipod-battery::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 30%;
+  width: 2px;
+  height: 40%;
+  background: #23255c;
+}
+
+.ipod-screen-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.ipod-screen-menu li {
+  height: 19%;
+}
+
+.ipod-screen-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 4%;
+  color: #23255c;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ipod-screen-menu a::after {
+  content: ">";
+  margin-left: 4%;
+}
+
+/* the selection bar starts on Articles and follows the pointer or keyboard */
+.ipod-screen-menu a.is-selected,
+.ipod-screen-menu a:hover,
+.ipod-screen-menu a:focus-visible {
+  background: #474783;
+  color: #ffffff;
+  outline: none;
+  border-radius: 0;
+}
+
+.ipod-screen-menu ul:hover a.is-selected:not(:hover),
+.ipod-screen-menu ul:focus-within a.is-selected:not(:focus-visible) {
+  background: transparent;
+  color: #23255c;
+}
+
+/* Click wheel: MENU, previous, next, play and centre button */
+.ipod-hotspot {
+  position: absolute;
+  border-radius: 50%;
+  width: 20%;
+  height: 11.22%;
+}
+
+.ipod-hotspot:hover {
+  outline: 2px dashed rgba(255, 182, 193, 0.9);
+  outline-offset: -2px;
+}
+
+.wheel-menu { left: 40.38%; top: 47.46%; }
+.wheel-prev { left: 12.69%; top: 62.89%; }
+.wheel-next { left: 68.08%; top: 62.89%; }
+.wheel-play { left: 40.38%; top: 78.32%; }
+.wheel-select { left: 38.46%; top: 61.81%; width: 23.85%; height: 13.38%; }
+
+/* The back to menu iPod is now a tall picture, so it gets narrower */
+.ipod-back {
+  width: 38px;
+}
+
+/* Former div labels are now real headings: keep their exact look */
+h2.section-divider {
+  font-weight: normal;
+  line-height: inherit;
+}
+
+.playlist-page h1 {
+  margin: 0 0 1.25rem;
+  font-size: 1.15rem;
+  color: #000;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+h1.retro-header {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Links to other articles at the end of each article and hub page */
+.more-articles {
+  width: min(var(--reading), 100%);
+  margin: 2.5rem auto 4.5rem;
+}
+
+.more-articles .how-to-browse,
+.how-to-browse.more-hub {
+  margin: 0.4rem auto;
+  line-height: 1.8;
+}
+
+.how-to-browse.more-hub {
+  margin: 2rem auto 4.5rem;
+}
+
+/* Where to get your music: the two lists under the tiles */
+.retro-panel.source-list {
+  width: min(560px, 100%);
+  margin: 2rem auto 0;
+  scroll-margin-top: 1.5rem;
+}
+
+h2.retro-header {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.source-kicker {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+}
+
+.source-list .retro-links {
+  padding-top: 0.5rem;
+}
