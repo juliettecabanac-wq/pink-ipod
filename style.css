@@ -1,26 +1,38 @@
+/* =================================================================
+   i discovered music  /  Pink Ipod  -  stylesheet
+   -----------------------------------------------------------------
+   Drop in replacement. Every existing class name is preserved, so no
+   HTML file needs to change. Goals: uniform look across pages,
+   readable on any screen (mobile first), and smooth interactions.
+   ================================================================= */
 
+/* -----------------------------------------------------------------
+   1. Design tokens (internal only, no class names change)
+   ----------------------------------------------------------------- */
 :root {
   --bg: #ffffff;
   --ink: #333333;
   --ink-soft: rgba(0, 0, 0, 0.6);
 
-  --blue: #0000ff; 
-  --pink: #d16089; 
-  --screen: #616491; 
+  --blue: #0000ff; /* the original blue used for links and titles */
+  --pink: #d16089; /* commentary pink, deepened so it stays readable */
+  --screen: #616491; /* iPod screen purple, kept for quotes */
 
-  --panel: #d8d8d8; 
+  --panel: #d8d8d8; /* retro grey panel */
   --panel-header: #c2c2c2;
   --panel-border: #b5b5b5;
 
   --font: "DotGothic16", "Courier New", monospace;
 
-  --reading: 900px; 
-  --gutter: 1rem;
+  --reading: 900px; /* comfortable reading width */
+  --gutter: 1rem; /* horizontal breathing room on phones */
   --radius: 10px;
-  --tap: 44px; 
+  --tap: 44px; /* minimum comfortable touch target */
 }
 
-
+/* -----------------------------------------------------------------
+       2. Reset and base
+       ----------------------------------------------------------------- */
 *,
 *::before,
 *::after {
@@ -28,7 +40,7 @@
 }
 
 html {
-  -webkit-text-size-adjust: 100%; 
+  -webkit-text-size-adjust: 100%; /* stop iOS auto inflating text */
   scroll-behavior: smooth;
 }
 
@@ -42,7 +54,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
-
+  /* the home page (no body class) stays centered */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,7 +85,10 @@ area:focus-visible {
   border-radius: 2px;
 }
 
-
+/* -----------------------------------------------------------------
+       3. Home page (index.html: .ipod-container, .ipod, area,
+          .how-to-browse, .intropage)
+       ----------------------------------------------------------------- */
 .ipod-container {
   display: flex;
   justify-content: center;
@@ -151,7 +166,9 @@ area:hover {
   transform: scale(1.08);
 }
 
-
+/* -----------------------------------------------------------------
+       5. Article body shells (.paragraph-articles, .body-articles)
+       ----------------------------------------------------------------- */
 .paragraph-articles {
   justify-content: flex-start;
   align-items: center;
@@ -168,7 +185,9 @@ area:hover {
   padding: 3rem var(--gutter) 5rem;
 }
 
-
+/* -----------------------------------------------------------------
+       6. Titles (.title-article, .main-title) unified
+       ----------------------------------------------------------------- */
 .title-article,
 .main-title {
   color: var(--blue);
@@ -180,7 +199,13 @@ area:hover {
   animation: fadeIn 1.5s ease-in-out;
 }
 
-
+/* -----------------------------------------------------------------
+       7. Long form text
+       .article-columns and .intro-columns: two columns on wide screens,
+       one column on phones. .interview: single justified column.
+       Giving each a definite width keeps the multi column layout stable
+       inside the centered flex body.
+       ----------------------------------------------------------------- */
 .article-columns,
 .intro-columns,
 .interview {
@@ -679,6 +704,7 @@ area:hover {
   width: 300px;
   max-width: calc(100% - 20px);
   background: var(--panel);
+  /* Windows 9x beveled edge: bright on top and left, dark on bottom and right */
   border-top: 2px solid #ffffff;
   border-left: 2px solid #ffffff;
   border-right: 2px solid #6a6a6a;
@@ -831,7 +857,12 @@ area:hover {
   margin-top: 0.5rem;
 }
 
+/* -----------------------------------------------------------------
+       11. October 2026 additions: iPod menu screen, hidden labels,
+           heading resets, navigation rows, 404 page
+       ----------------------------------------------------------------- */
 
+/* Text kept for screen readers and search engines, not shown on screen */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -844,9 +875,10 @@ area:hover {
   border: 0;
 }
 
+/* Home: the iPod is now cropped to the device, so it can be shown big */
 .ipod-device {
   position: relative;
-  width: clamp(180px, 52vw, 215px); 
+  width: clamp(180px, 52vw, 215px); /* iPod size on the homepage: change 215px to resize */
   margin: 0 auto;
   container-type: inline-size;
 }
@@ -857,6 +889,8 @@ area:hover {
   cursor: default;
 }
 
+/* The menu drawn over the iPod screen: real links, crawlable and accessible.
+   Positions are percentages of the picture, so it scales with it. */
 .ipod-screen-menu {
   position: absolute;
   left: 18.46%;
@@ -935,6 +969,7 @@ area:hover {
   margin-left: 4%;
 }
 
+/* the selection bar starts on Articles and follows the pointer or keyboard */
 .ipod-screen-menu a.is-selected,
 .ipod-screen-menu a:hover,
 .ipod-screen-menu a:focus-visible {
@@ -950,22 +985,25 @@ area:hover {
   color: #23255c;
 }
 
+/* Click wheel: MENU, previous, next, play and centre button */
 .ipod-hotspot {
   position: absolute;
   border-radius: 50%;
   width: 20%;
   height: 11.22%;
 }
+
+/* the clickable zone stays large for fingers; the circle shown on hover is smaller */
 .ipod-hotspot::after {
   content: "";
   position: absolute;
-  inset: 24%; 
+  inset: 24%; /* raise to shrink the circle, lower to enlarge it */
   border-radius: 50%;
   border: 1.5px dashed transparent;
 }
 
 .ipod-hotspot:hover::after {
-  border-color: var(--blue); 
+  border-color: var(--blue); /* same blue as the site's text links */
 }
 
 .wheel-menu { left: 40.38%; top: 45.95%; }
@@ -974,11 +1012,12 @@ area:hover {
 .wheel-play { left: 40.38%; top: 80.15%; }
 .wheel-select { left: 38.46%; top: 61.81%; width: 23.85%; height: 13.38%; }
 
-
+/* The back to menu iPod is now a tall picture, so it gets narrower */
 .ipod-back {
   width: 38px;
 }
 
+/* Former div labels are now real headings: keep their exact look */
 h2.section-divider {
   font-weight: normal;
   line-height: inherit;
@@ -997,6 +1036,7 @@ h1.retro-header {
   font-size: 0.95rem;
 }
 
+/* Links to other articles at the end of each article and hub page */
 .more-articles {
   width: min(var(--reading), 100%);
   margin: 2.5rem auto 4.5rem;
@@ -1012,6 +1052,7 @@ h1.retro-header {
   margin: 2rem auto 4.5rem;
 }
 
+/* Where to get your music: the two lists under the tiles */
 .retro-panel.source-list {
   width: min(560px, 100%);
   margin: 2rem auto 0;
@@ -1034,12 +1075,30 @@ h2.retro-header {
   padding-top: 0.5rem;
 }
 
-
+/* Content I have been enjoying: the two tiles sit centred under the title */
 .coverflow.coverflow-center {
   display: flex;
   justify-content: center;
 }
 
+/* the two list pages: the grey panel is the page, like on Playlists */
 .retro-panel.source-list.source-page {
   margin-top: clamp(2rem, 12vh, 7rem);
+}
+
+/* Homepage spacing: iPod, intro and latest links sit as one centred block.
+   Values to tweak: the gap above the latest links (margin-top of
+   .home-latest), the gap between the two lines (margin of its lines) and
+   the space under them (margin-bottom of .home-latest). */
+.intropage.home-intro {
+  padding-top: 0.75rem;
+  padding-bottom: 0;
+}
+
+.home-latest {
+  margin: 1.75rem auto 3.5rem;
+}
+
+.home-latest .how-to-browse {
+  margin: 0.25rem auto;
 }
