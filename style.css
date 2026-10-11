@@ -1086,17 +1086,14 @@ h2.retro-header {
   margin-top: clamp(2rem, 12vh, 7rem);
 }
 
-/* Homepage spacing: iPod, intro and latest links sit as one centred block.
-   Values to tweak: the gap above the latest links (margin-top of
-   .home-latest), the gap between the two lines (margin of its lines) and
-   the space under them (margin-bottom of .home-latest). */
+
 .intropage.home-intro {
   padding-top: 0.75rem;
   padding-bottom: 0;
 }
 
 .home-latest {
-  margin: 1.75rem auto 3.5rem;
+  margin: 1rem auto 4.5rem;
 }
 
 .home-latest .how-to-browse {
