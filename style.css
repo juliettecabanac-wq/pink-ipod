@@ -4,25 +4,23 @@
   --ink: #333333;
   --ink-soft: rgba(0, 0, 0, 0.6);
 
-  --blue: #0000ff; /* the original blue used for links and titles */
-  --pink: #d16089; /* commentary pink, deepened so it stays readable */
-  --screen: #616491; /* iPod screen purple, kept for quotes */
+  --blue: #0000ff; 
+  --pink: #d16089; 
+  --screen: #616491; 
 
-  --panel: #d8d8d8; /* retro grey panel */
+  --panel: #d8d8d8; 
   --panel-header: #c2c2c2;
   --panel-border: #b5b5b5;
 
   --font: "DotGothic16", "Courier New", monospace;
 
-  --reading: 900px; /* comfortable reading width */
-  --gutter: 1rem; /* horizontal breathing room on phones */
+  --reading: 900px; 
+  --gutter: 1rem;
   --radius: 10px;
-  --tap: 44px; /* minimum comfortable touch target */
+  --tap: 44px; 
 }
 
-/* -----------------------------------------------------------------
-       2. Reset and base
-       ----------------------------------------------------------------- */
+
 *,
 *::before,
 *::after {
@@ -30,7 +28,7 @@
 }
 
 html {
-  -webkit-text-size-adjust: 100%; /* stop iOS auto inflating text */
+  -webkit-text-size-adjust: 100%; 
   scroll-behavior: smooth;
 }
 
@@ -44,7 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
-  /* the home page (no body class) stays centered */
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -75,10 +73,7 @@ area:focus-visible {
   border-radius: 2px;
 }
 
-/* -----------------------------------------------------------------
-       3. Home page (index.html: .ipod-container, .ipod, area,
-          .how-to-browse, .intropage)
-       ----------------------------------------------------------------- */
+
 .ipod-container {
   display: flex;
   justify-content: center;
@@ -156,9 +151,7 @@ area:hover {
   transform: scale(1.08);
 }
 
-/* -----------------------------------------------------------------
-       5. Article body shells (.paragraph-articles, .body-articles)
-       ----------------------------------------------------------------- */
+
 .paragraph-articles {
   justify-content: flex-start;
   align-items: center;
@@ -175,9 +168,7 @@ area:hover {
   padding: 3rem var(--gutter) 5rem;
 }
 
-/* -----------------------------------------------------------------
-       6. Titles (.title-article, .main-title) unified
-       ----------------------------------------------------------------- */
+
 .title-article,
 .main-title {
   color: var(--blue);
@@ -189,13 +180,7 @@ area:hover {
   animation: fadeIn 1.5s ease-in-out;
 }
 
-/* -----------------------------------------------------------------
-       7. Long form text
-       .article-columns and .intro-columns: two columns on wide screens,
-       one column on phones. .interview: single justified column.
-       Giving each a definite width keeps the multi column layout stable
-       inside the centered flex body.
-       ----------------------------------------------------------------- */
+
 .article-columns,
 .intro-columns,
 .interview {
