@@ -545,7 +545,7 @@ area:hover {
 
 .retro-links a {
   color: var(--blue);
-  text-decoration: underline;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   min-height: var(--tap);
@@ -1085,4 +1085,41 @@ h2.retro-header {
 
 .home-latest .how-to-browse {
   margin: 0.25rem auto;
+}
+
+/* Who is Pink iPod: Pink iPod's own answers are set in pink */
+.who-interview {
+  margin-top: 0.5rem;
+}
+
+.ipod-voice {
+  color: var(--pink);
+}
+
+ul.ipod-voice {
+  margin: 0 0 1rem;
+  padding-left: 1.4rem;
+}
+
+ul.ipod-voice li {
+  margin-bottom: 0.4rem;
+}
+
+/* Who is Pink iPod: Girl Uninterrupted's questions in the site blue */
+.who-interview .pi {
+  color: var(--blue);
+}
+
+/* "follow pink iPod on Instagram" line under each article title */
+.follow-ig {
+  margin: 0 auto 2rem;
+}
+
+.article-date + .follow-ig {
+  margin-top: -1.25rem;
+}
+
+/* "click on title to play / read" under the grey panel titles */
+.panel-hint {
+  margin-bottom: 0;
 }
