@@ -993,19 +993,6 @@ area:hover {
   height: 11.22%;
 }
 
-/* the clickable zone stays large for fingers; the circle shown on hover is smaller */
-.ipod-hotspot::after {
-  content: "";
-  position: absolute;
-  inset: 24%; /* raise to shrink the circle, lower to enlarge it */
-  border-radius: 50%;
-  border: 1.5px dashed transparent;
-}
-
-.ipod-hotspot:hover::after {
-  border-color: var(--blue); /* same blue as the site's text links */
-}
-
 .wheel-menu { left: 40.38%; top: 45.95%; }
 .wheel-prev { left: 13.46%; top: 62.89%; }
 .wheel-next { left: 68.08%; top: 62.89%; }
