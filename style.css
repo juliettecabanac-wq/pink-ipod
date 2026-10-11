@@ -1,14 +1,4 @@
-/* =================================================================
-   i discovered music  /  Pink Ipod  -  stylesheet
-   -----------------------------------------------------------------
-   Drop in replacement. Every existing class name is preserved, so no
-   HTML file needs to change. Goals: uniform look across pages,
-   readable on any screen (mobile first), and smooth interactions.
-   ================================================================= */
 
-/* -----------------------------------------------------------------
-   1. Design tokens (internal only, no class names change)
-   ----------------------------------------------------------------- */
 :root {
   --bg: #ffffff;
   --ink: #333333;
@@ -704,7 +694,6 @@ area:hover {
   width: 300px;
   max-width: calc(100% - 20px);
   background: var(--panel);
-  /* Windows 9x beveled edge: bright on top and left, dark on bottom and right */
   border-top: 2px solid #ffffff;
   border-left: 2px solid #ffffff;
   border-right: 2px solid #6a6a6a;
@@ -857,12 +846,7 @@ area:hover {
   margin-top: 0.5rem;
 }
 
-/* -----------------------------------------------------------------
-       11. October 2026 additions: iPod menu screen, hidden labels,
-           heading resets, navigation rows, 404 page
-       ----------------------------------------------------------------- */
 
-/* Text kept for screen readers and search engines, not shown on screen */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -875,10 +859,9 @@ area:hover {
   border: 0;
 }
 
-/* Home: the iPod is now cropped to the device, so it can be shown big */
 .ipod-device {
   position: relative;
-  width: clamp(180px, 52vw, 215px); /* iPod size on the homepage: change 215px to resize */
+  width: clamp(180px, 52vw, 215px); 
   margin: 0 auto;
   container-type: inline-size;
 }
@@ -889,8 +872,6 @@ area:hover {
   cursor: default;
 }
 
-/* The menu drawn over the iPod screen: real links, crawlable and accessible.
-   Positions are percentages of the picture, so it scales with it. */
 .ipod-screen-menu {
   position: absolute;
   left: 18.46%;
@@ -969,7 +950,6 @@ area:hover {
   margin-left: 4%;
 }
 
-/* the selection bar starts on Articles and follows the pointer or keyboard */
 .ipod-screen-menu a.is-selected,
 .ipod-screen-menu a:hover,
 .ipod-screen-menu a:focus-visible {
@@ -985,25 +965,22 @@ area:hover {
   color: #23255c;
 }
 
-/* Click wheel: MENU, previous, next, play and centre button */
 .ipod-hotspot {
   position: absolute;
   border-radius: 50%;
   width: 20%;
   height: 11.22%;
 }
-
-/* the clickable zone stays large for fingers; the circle shown on hover is smaller */
 .ipod-hotspot::after {
   content: "";
   position: absolute;
-  inset: 24%; /* raise to shrink the circle, lower to enlarge it */
+  inset: 24%; 
   border-radius: 50%;
   border: 1.5px dashed transparent;
 }
 
 .ipod-hotspot:hover::after {
-  border-color: var(--blue); /* same blue as the site's text links */
+  border-color: var(--blue); 
 }
 
 .wheel-menu { left: 40.38%; top: 45.95%; }
@@ -1012,12 +989,11 @@ area:hover {
 .wheel-play { left: 40.38%; top: 80.15%; }
 .wheel-select { left: 38.46%; top: 61.81%; width: 23.85%; height: 13.38%; }
 
-/* The back to menu iPod is now a tall picture, so it gets narrower */
+
 .ipod-back {
   width: 38px;
 }
 
-/* Former div labels are now real headings: keep their exact look */
 h2.section-divider {
   font-weight: normal;
   line-height: inherit;
@@ -1036,7 +1012,6 @@ h1.retro-header {
   font-size: 0.95rem;
 }
 
-/* Links to other articles at the end of each article and hub page */
 .more-articles {
   width: min(var(--reading), 100%);
   margin: 2.5rem auto 4.5rem;
@@ -1052,7 +1027,6 @@ h1.retro-header {
   margin: 2rem auto 4.5rem;
 }
 
-/* Where to get your music: the two lists under the tiles */
 .retro-panel.source-list {
   width: min(560px, 100%);
   margin: 2rem auto 0;
@@ -1075,13 +1049,12 @@ h2.retro-header {
   padding-top: 0.5rem;
 }
 
-/* Content I have been enjoying: the two tiles sit centred under the title */
+
 .coverflow.coverflow-center {
   display: flex;
   justify-content: center;
 }
 
-/* the two list pages: the grey panel is the page, like on Playlists */
 .retro-panel.source-list.source-page {
   margin-top: clamp(2rem, 12vh, 7rem);
 }
