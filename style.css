@@ -1234,3 +1234,55 @@ ul.ipod-voice li {
     max-width: 85%;
   }
 }
+
+/* -----------------------------------------------------------------
+       13. "latest!!" sticker on the Articles page (October 2026)
+           It sits on whichever tile is first in the coverflow, so it
+           moves to the next new article on its own: nothing to edit in
+           the HTML. Looks like a record shop sticker slapped on a CD
+           case; it sways gently and straightens when the cover lifts.
+       ----------------------------------------------------------------- */
+.coverflow > .album:first-child > a {
+  position: relative;
+  display: block;
+}
+
+.coverflow > .album:first-child > a::before {
+  content: "latest!!";
+  position: absolute;
+  top: -12px;
+  left: -14px;
+  z-index: 2;
+  padding: 2px 10px 3px;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  color: var(--blue);
+  background: #f0ff00; /* neon yellow: change here to recolour the sticker */
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--blue);
+  rotate: -9deg;
+  transition: translate 0.3s ease, rotate 0.3s ease;
+  animation: latest-sway 3.2s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* when the cover lifts on hover, the sticker lifts and straightens with it */
+.coverflow > .album:first-child > a:hover::before {
+  translate: 0 -8px;
+  rotate: -2deg;
+  animation-play-state: paused;
+}
+
+@keyframes latest-sway {
+  from { rotate: -9deg; }
+  to { rotate: -4deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coverflow > .album:first-child > a::before {
+    animation: none;
+  }
+}
