@@ -1123,3 +1123,114 @@ ul.ipod-voice li {
 .panel-hint {
   margin-bottom: 0;
 }
+
+/* -----------------------------------------------------------------
+       12. Chat interviews (October 2026): the conversation shown as
+           message bubbles. Pink iPod on the right in pink, the artist
+           on the left in the Apple Messages grey. First used on
+           cordelia-gartside.html. To recolour, change the three
+           --bubble values just below.
+       ----------------------------------------------------------------- */
+:root {
+  --bubble-me: #c4497a; /* Pink iPod: the site pink, a shade deeper so white text stays readable */
+  --bubble-them: #e9e9eb; /* the artist: Apple Messages grey */
+  --bubble-them-ink: #000000;
+}
+
+.chat {
+  width: min(var(--reading), 100%);
+  margin: 2.5rem auto 0;
+  padding: 0 10px; /* room for the bubble tails */
+}
+
+.chat-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 1.25rem;
+}
+
+.chat-group.me {
+  align-items: flex-end;
+}
+
+.chat-group.them {
+  align-items: flex-start;
+}
+
+.chat-name {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  color: var(--ink-soft);
+  margin: 0 0.9rem 0.2rem;
+}
+
+.bubble {
+  position: relative;
+  max-width: min(75%, 560px);
+  margin: 0;
+  padding: 0.55rem 0.95rem;
+  border-radius: 1.15rem;
+  line-height: 1.45;
+  text-align: left;
+  hyphens: manual;
+  overflow-wrap: break-word;
+}
+
+.me .bubble {
+  background: var(--bubble-me);
+  color: #ffffff;
+}
+
+.them .bubble {
+  background: var(--bubble-them);
+  color: var(--bubble-them-ink);
+}
+
+.me .bubble a {
+  color: #ffffff;
+}
+
+/* the little tail on the last bubble of each turn, as in Messages */
+.bubble:last-child::before,
+.bubble:last-child::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+}
+
+.me .bubble:last-child::before {
+  right: -8px;
+  width: 20px;
+  background: var(--bubble-me);
+  border-bottom-left-radius: 16px 14px;
+}
+
+.me .bubble:last-child::after {
+  right: -10px;
+  width: 10px;
+  background: var(--bg);
+  border-bottom-left-radius: 10px;
+}
+
+.them .bubble:last-child::before {
+  left: -8px;
+  width: 20px;
+  background: var(--bubble-them);
+  border-bottom-right-radius: 16px 14px;
+}
+
+.them .bubble:last-child::after {
+  left: -10px;
+  width: 10px;
+  background: var(--bg);
+  border-bottom-right-radius: 10px;
+}
+
+/* phones: bubbles take a little more of the width */
+@media (max-width: 480px) {
+  .bubble {
+    max-width: 85%;
+  }
+}
